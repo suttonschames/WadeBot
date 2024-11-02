@@ -33,22 +33,22 @@ bool oneDriver = true;
 bool conveyorSpinning= false ;
 void conveyorSpin(){
   conveyorSpinning = !conveyorSpinning;
-};
+}
 
 bool pistonPushing= false ;
 void pistonPush(){
   pistonPushing = !pistonPushing;
-};
+}
 
 bool linearSpinning= false ;
 void linearSpin(){
   linearSpinning = !linearSpinning;
-};
+}
 
 bool intakeSpinning= false ;
 void intakeSpin(){
   intakeSpinning = !intakeSpinning;
-};
+}
 
 void nothing(){
   // ChatGPT wrote this story. I didn't read it. I thuoght it would be funny to put in here cause this function is, well, like just look at it...
