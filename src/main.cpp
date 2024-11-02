@@ -51,7 +51,6 @@ void intakeSpin(){
 };
 
 void nothing(){
-
   // ChatGPT wrote this story. I didn't read it. I thuoght it would be funny to put in here cause this function is, well, like just look at it...
 
   /*
