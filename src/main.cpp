@@ -30,22 +30,22 @@ using namespace vex;
 
 bool oneDriver = true;
 
-bool conveyorSpinning= false ;
+bool conveyorSpinning= false;
 void conveyorSpin(){
   conveyorSpinning = !conveyorSpinning;
 }
 
-bool pistonPushing= false ;
+bool pistonPushing= false;
 void pistonPush(){
   pistonPushing = !pistonPushing;
 }
 
-bool linearSpinning= false ;
+bool linearSpinning= false;
 void linearSpin(){
   linearSpinning = !linearSpinning;
 }
 
-bool intakeSpinning= false ;
+bool intakeSpinning= false;
 void intakeSpin(){
   intakeSpinning = !intakeSpinning;
 }
@@ -101,7 +101,7 @@ void switchController(){
     Controller1.ButtonR2.pressed(nothing);
     Controller1.ButtonUp.pressed(nothing);
   }
-} // apples... what? why? apples? suriously? who wrote that?
+}//switchController_func
 
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
@@ -112,7 +112,8 @@ int main() {
   Controller1.ButtonUp.pressed(linearSpin);
   Controller1.ButtonA.pressed(switchController);
 
-  while (true) {
+  // guys, please stop writing your code blocks stacked on top of each other. it's so unreadable. keep it nice and spread out like this.
+  while (true) { 
     if(oneDriver){ 
       if(Controller1.ButtonUp.pressing()){
         LinearMotion.spin(forward,100,pct);
@@ -123,9 +124,8 @@ int main() {
       else{
         LinearMotion.stop(coast);
       }
-      // guys, please stop writing your if statements stacked on top of each other. it's so unreadable. keep it nice and spread out like this.
-    }
-
+    }//if
+      
     else{
       if(Controller2.ButtonUp.pressing()){
         LinearMotion.spin(forward,100,pct);
@@ -136,13 +136,13 @@ int main() {
       else{
         LinearMotion.stop(coast);
       }
-    }
-
+    }//else
+    
     DriveLeft.spin(forward,Controller1.Axis3.value(),pct);
     DriveRight.spin(forward,Controller1.Axis2.value(),pct);
     Conveyor.spin(forward,100*conveyorSpinning,pct);
     intake.spin(forward,100*intakeSpinning,pct);
     PistonOut.set(pistonPushing);
-  }
+  }//while
   wait(25, msec);
-}
+}//main_func
