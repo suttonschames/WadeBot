@@ -30,26 +30,26 @@ using namespace vex;
 
 bool oneDriver = true;
 
-bool conveyorSpinning= false;
+bool conveyorSpinning= false ;
 void conveyorSpin(){
   conveyorSpinning = !conveyorSpinning;
 }
 
-bool pistonPushing= false;
+bool pistonPushing= false ;
 void pistonPush(){
   pistonPushing = !pistonPushing;
 }
 
-bool linearSpinning= false;
+bool linearSpinning= false ;
 void linearSpin(){
   linearSpinning = !linearSpinning;
 }
 
-bool intakeSpinning= false;
+bool intakeSpinning= false ;
 void intakeSpin(){
   intakeSpinning = !intakeSpinning;
 }
-
+int intakeReversed = 1;
 void nothing(){
   // ChatGPT wrote this story. I didn't read it. I thuoght it would be funny to put in here cause this function is, well, like just look at it...
 
@@ -83,38 +83,51 @@ void switchController(){
   oneDriver = !oneDriver;
 
   if(oneDriver){
-    Controller1.ButtonL1.pressed(conveyorSpin);
-    Controller1.ButtonR2.pressed(pistonPush);
+    Controller1.ButtonR1.pressed(conveyorSpin);
+    Controller1.ButtonA.pressed(pistonPush);
     Controller1.ButtonUp.pressed(linearSpin);
+    Controller1.ButtonDown.pressed(linearSpin);
+    Controller1.ButtonL1.pressed(intakeSpin);
     wait(10,msec);
-    Controller2.ButtonL1.pressed(nothing);
+    Controller2.ButtonR1.pressed(nothing);
     Controller2.ButtonR2.pressed(nothing);
+    Controller2.ButtonA.pressed(nothing);
     Controller2.ButtonUp.pressed(nothing);
+    Controller2.ButtonDown.pressed(nothing);
+    // Controller2.ButtonL1.pressed(nothing);
+    // Controller2.ButtonL2.pressed(nothing);
   }
-  
   else{
-    Controller2.ButtonL1.pressed(conveyorSpin);
-    Controller2.ButtonR2.pressed(pistonPush);
+    Controller2.ButtonR1.pressed(conveyorSpin);
+    Controller2.ButtonA.pressed(pistonPush);
     Controller2.ButtonUp.pressed(linearSpin);
+    Controller2.ButtonDown.pressed(linearSpin);
+    // Controller2.ButtonL1.pressed(intakeSpin);
+    // Controller2.ButtonL2.pressed(intakeReverse);
     wait(10,msec);
-    Controller1.ButtonL1.pressed(nothing);
+    Controller1.ButtonR1.pressed(nothing);
     Controller1.ButtonR2.pressed(nothing);
+    Controller1.ButtonA.pressed(nothing);
     Controller1.ButtonUp.pressed(nothing);
+    Controller1.ButtonDown.pressed(nothing);
+    // Controller1.ButtonL1.pressed(nothing);
+    // Controller1.ButtonL2.pressed(nothing);
   }
-}//switchController_func
-
+} // apples... what? why? apples? suriously? who wrote that?
+//my bad noah. apples are banger
 int main() {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-  Controller1.ButtonL1.pressed(conveyorSpin);
-  Controller1.ButtonL2.pressed(intakeSpin);
-  Controller1.ButtonR2.pressed(pistonPush);
+  Controller1.ButtonR1.pressed(conveyorSpin);
+  Controller1.ButtonL1.pressed(intakeSpin);
+  Controller1.ButtonA.pressed(pistonPush);
   Controller1.ButtonUp.pressed(linearSpin);
-  Controller1.ButtonA.pressed(switchController);
+  Controller1.ButtonDown.pressed(linearSpin);
+  Controller1.ButtonY.pressed(switchController);
 
-  // guys, please stop writing your code blocks stacked on top of each other. it's so unreadable. keep it nice and spread out like this.
-  while (true) { 
+  while (true) {
     if(oneDriver){ 
+      // LIFT
       if(Controller1.ButtonUp.pressing()){
         LinearMotion.spin(forward,100,pct);
       }
@@ -124,9 +137,14 @@ int main() {
       else{
         LinearMotion.stop(coast);
       }
-    }//if
-      
+      if(Controller1.ButtonR2.pressing()){
+        Conveyor.spin(reverse,100,pct);
+      }else{
+        Conveyor.spin(forward,100*conveyorSpinning,pct);
+      }
+    }
     else{
+      // LIFT
       if(Controller2.ButtonUp.pressing()){
         LinearMotion.spin(forward,100,pct);
       }
@@ -136,13 +154,21 @@ int main() {
       else{
         LinearMotion.stop(coast);
       }
-    }//else
-    
+      if(Controller2.ButtonR2.pressing()){
+        Conveyor.spin(reverse,100,pct);
+      }else{
+        Conveyor.spin(forward,100*conveyorSpinning,pct);
+      }
+    }
     DriveLeft.spin(forward,Controller1.Axis3.value(),pct);
     DriveRight.spin(forward,Controller1.Axis2.value(),pct);
-    Conveyor.spin(forward,100*conveyorSpinning,pct);
-    intake.spin(forward,100*intakeSpinning,pct);
+    
+    if(Controller1.ButtonL2.pressing()){
+      intake.spin(reverse,100,pct);
+    }else{
+      intake.spin(forward,100*intakeSpinning,pct);
+    }
     PistonOut.set(pistonPushing);
-  }//while
+  }
   wait(25, msec);
-}//main_func
+}
