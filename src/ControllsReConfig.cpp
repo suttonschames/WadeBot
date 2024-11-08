@@ -137,10 +137,10 @@ int main() {
       }
 
       // INTAKE
-      if(Controller1.ButtonL1.pressing()){
+      if(Controller1.ButtonL1.pressed()){
         intake.spin(forward,100*intakeSpinning,pct);
       }
-      else if(Controller1.ButtonL2.pressing()){
+      else if(Controller1.ButtonL2.pressed()){
         intake.spin(reverse,100*intakeSpinning,pct);
       }
       else{
@@ -148,10 +148,10 @@ int main() {
       }
 
       // CONVEYER
-      if(Controller1.ButtonR1.pressing()){
+      if(Controller1.ButtonR1.pressed()){
         Conveyor.spin(forward,100*conveyorSpinning,pct);
       }
-      else if(Controller1.ButtonR2.pressing()){
+      else if(Controller1.ButtonR2.pressed()){
         Conveyor.spin(reverse,100*conveyorSpinning,pct);
       }
       else{
@@ -172,10 +172,10 @@ int main() {
       }
 
       // INTAKE
-      if(Controller1.ButtonL1.pressing()){
+      if(Controller1.ButtonL1.pressed()){
         intake.spin(forward,100*intakeSpinning,pct);
       }
-      else if(Controller1.ButtonL2.pressing()){
+      else if(Controller1.ButtonL2.pressed()){
         intake.spin(reverse,100*intakeSpinning,pct);
       }
       else{
@@ -183,10 +183,10 @@ int main() {
       }
 
       // CONVEYER
-      if(Controller1.ButtonR1.pressing()){
+      if(Controller1.ButtonR1.pressed()){
         Conveyor.spin(forward,100*conveyorSpinning,pct);
       }
-      else if(Controller1.ButtonR2.pressing()){
+      else if(Controller1.ButtonR2.pressed()){
         Conveyor.spin(reverse,100*conveyorSpinning,pct);
       }
       else{
