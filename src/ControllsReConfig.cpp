@@ -144,7 +144,7 @@ int main() {
         intake.spin(reverse,100*intakeSpinning,pct);
       }
       else{
-        instake.stop(coast);
+        intake.stop(coast);
       }
 
       // CONVEYER
@@ -179,7 +179,7 @@ int main() {
         intake.spin(reverse,100*intakeSpinning,pct);
       }
       else{
-        instake.stop(coast);
+        intake.stop(coast);
       }
 
       // CONVEYER
