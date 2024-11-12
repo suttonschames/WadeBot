@@ -165,7 +165,8 @@ int main() {
     
     if(Controller1.ButtonL2.pressing()){
       intake.spin(reverse,100,pct);
-    }else{
+    }
+    else{
       intake.spin(forward,100*intakeSpinning,pct);
     }
     PistonOut.set(pistonPushing);
