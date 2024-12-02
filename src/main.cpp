@@ -196,6 +196,11 @@ void usercontrol(void) {
 
 int main() {
   // Set up callbacks for autonomous and driver control periods.
+  Controller1.ButtonR1.pressed(conveyorSpin);
+  Controller1.ButtonA.pressed(pistonPush);
+  Controller1.ButtonUp.pressed(linearSpin);
+  Controller1.ButtonDown.pressed(linearSpin);
+  Controller1.ButtonL1.pressed(intakeSpin);
   Competition.autonomous(autonomous);
   Competition.drivercontrol(usercontrol);
 
